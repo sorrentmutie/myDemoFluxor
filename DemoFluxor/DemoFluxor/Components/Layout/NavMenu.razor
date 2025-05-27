@@ -1,0 +1,53 @@
+﻿@using Fluxor
+@inherits Fluxor.Blazor.Web.Components.FluxorComponent
+@using DemoFluxor.Models
+
+<div class="top-row ps-3 navbar navbar-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="">DemoFluxor</a>
+    </div>
+</div>
+
+<input type="checkbox" title="Navigation menu" class="navbar-toggler" />
+
+<div class="nav-scrollable" onclick="document.querySelector('.navbar-toggler').click()">
+    <nav class="flex-column">
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
+                <span class="bi bi-house-door-fill-nav-menu" aria-hidden="true"></span> Home
+            </NavLink>
+        </div>
+
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="counter">
+                <span class="bi bi-plus-square-fill-nav-menu" aria-hidden="true"></span> Counter
+            </NavLink>
+        </div>
+
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="weather">
+                <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> Weather
+            </NavLink>
+        </div>
+
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="items">
+                <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> Items
+            </NavLink>
+        </div>
+
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="items">
+                <span class="oi oi-plus" aria-hidden="true"></span> Items (@CartState.Value.ItemsInCart.Length) - Tot: @CartState.Value.ItemsInCart.Sum(i => i.Price) €
+            </NavLink>
+        </div>
+
+
+    </nav>
+</div>
+
+@code {
+
+    [Inject]
+    private IState<CartState> CartState { get; set; }
+}
